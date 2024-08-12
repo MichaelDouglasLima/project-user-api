@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import UserModel from '../model/User'; // Certifique-se de que o caminho está correto
+import UserModel from '../model/User';
 import mongoose from 'mongoose';
 
 class UserController {

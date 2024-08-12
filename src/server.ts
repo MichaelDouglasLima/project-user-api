@@ -21,7 +21,6 @@ class App {
 
   private middlewares(): void {
     this.express.use(express.json());
-    // Adicione outros middlewares aqui, se necessário
   }
 
   private routes(): void {
