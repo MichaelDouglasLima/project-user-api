@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1723640997424" clover="3.2.0">
-  <project timestamp="1723640997424" name="All files">
-    <metrics statements="128" coveredstatements="94" conditionals="9" coveredconditionals="1" methods="27" coveredmethods="22" elements="164" coveredelements="117" complexity="0" loc="128" ncloc="128" packages="4" files="5" classes="5"/>
+<coverage generated="1723653825232" clover="3.2.0">
+  <project timestamp="1723653825232" name="All files">
+    <metrics statements="128" coveredstatements="97" conditionals="9" coveredconditionals="1" methods="27" coveredmethods="24" elements="164" coveredelements="122" complexity="0" loc="128" ncloc="128" packages="4" files="5" classes="5"/>
     <package name="src">
-      <metrics statements="26" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="9"/>
+      <metrics statements="26" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="10"/>
       <file name="routes.ts" path="C:\Users\AGX\projects\project-user-api\src\routes.ts">
-        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="6" count="2" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
@@ -38,9 +38,9 @@
       </file>
     </package>
     <package name="src.app.controller">
-      <metrics statements="90" coveredstatements="58" conditionals="9" coveredconditionals="1" methods="14" coveredmethods="11"/>
+      <metrics statements="90" coveredstatements="61" conditionals="9" coveredconditionals="1" methods="14" coveredmethods="12"/>
       <file name="UserController.ts" path="C:\Users\AGX\projects\project-user-api\src\app\controller\UserController.ts">
-        <metrics statements="90" coveredstatements="58" conditionals="9" coveredconditionals="1" methods="14" coveredmethods="11"/>
+        <metrics statements="90" coveredstatements="61" conditionals="9" coveredconditionals="1" methods="14" coveredmethods="12"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
@@ -64,25 +64,25 @@
         <line num="38" count="1" type="stmt"/>
         <line num="41" count="1" type="stmt"/>
         <line num="45" count="0" type="stmt"/>
-        <line num="50" count="1" type="stmt"/>
-        <line num="51" count="1" type="stmt"/>
-        <line num="53" count="1" type="stmt"/>
-        <line num="55" count="1" type="stmt"/>
-        <line num="56" count="1" type="stmt"/>
-        <line num="60" count="1" type="stmt"/>
-        <line num="61" count="1" type="stmt"/>
-        <line num="65" count="1" type="stmt"/>
-        <line num="66" count="1" type="stmt"/>
-        <line num="70" count="1" type="stmt"/>
-        <line num="76" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="50" count="2" type="stmt"/>
+        <line num="51" count="2" type="stmt"/>
+        <line num="53" count="2" type="stmt"/>
+        <line num="55" count="2" type="stmt"/>
+        <line num="56" count="2" type="stmt"/>
+        <line num="60" count="2" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
+        <line num="66" count="2" type="stmt"/>
+        <line num="70" count="2" type="stmt"/>
+        <line num="76" count="2" type="cond" truecount="0" falsecount="1"/>
         <line num="77" count="0" type="stmt"/>
         <line num="78" count="0" type="stmt"/>
-        <line num="81" count="1" type="stmt"/>
-        <line num="83" count="1" type="stmt"/>
+        <line num="81" count="2" type="stmt"/>
+        <line num="83" count="2" type="stmt"/>
         <line num="87" count="0" type="stmt"/>
-        <line num="92" count="0" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
-        <line num="94" count="0" type="stmt"/>
+        <line num="92" count="1" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
+        <line num="94" count="1" type="stmt"/>
         <line num="98" count="0" type="stmt"/>
         <line num="103" count="1" type="stmt"/>
         <line num="104" count="1" type="stmt"/>

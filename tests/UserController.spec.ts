@@ -51,6 +51,26 @@ describe('UserController Tests', () => {
     expect(response.body.data.user.name).toBe('John Doe');
   });
 
+  it('should list all users', async () => {
+    const user2 = { name: 'Jane Doe', email: 'jane@example.com', profession: 'Designer' };
+
+    await request(server)
+      .post('/users')
+      .send(user2)
+      .expect(201);
+
+    const response = await request(server)
+      .get('/users')
+      .expect(200);
+
+    expect(response.body.data.users).toBeInstanceOf(Array);
+    expect(response.body.data.users.length).toBeGreaterThanOrEqual(2);
+
+    const userNames = response.body.data.users.map((user: any) => user.name);
+    expect(userNames).toContain('John Doe');
+    expect(userNames).toContain('Jane Doe');
+  });
+
   it('should update a user', async () => {
     if (!userId) {
       throw new Error('User ID not set');
