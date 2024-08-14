@@ -125,12 +125,12 @@ class UserController {
                 updatedData[op] = req.body[op];
             });
 
-            const data = await UserModel.findByIdAndUpdate(id, updatedData, { new: true }).exec();
-            if (!data) {
+            const user = await UserModel.findByIdAndUpdate(id, updatedData, { new: true }).exec();
+            if (!user) {
                 return res.send_notFound('Not Found');
             }
             return res.send_created('Created', {
-                data
+                user
             })
         } catch (error) {
             return res.send_internalServerError('Internal Server Error');
@@ -156,13 +156,13 @@ class UserController {
                 return res.send_badRequest('Bad Request', errors);
             }
 
-            const data = await UserModel.findByIdAndUpdate(id, req.body, { new: true }).exec();
-            if (!data) {
+            const user = await UserModel.findByIdAndUpdate(id, req.body, { new: true }).exec();
+            if (!user) {
                 return res.send_notFound('User Not Found');
             }
 
             return res.send_created('Created', {
-                data
+                user
             })
         } catch (error) {
             return res.send_internalServerError('Internal Server Error');

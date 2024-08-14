@@ -15,7 +15,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await mongoose.connection.dropDatabase();
+  // await mongoose.connection.dropDatabase(); /*Uncomment this option to delete the DB after use.*/
   await mongoose.connection.close();
 });
 
@@ -30,12 +30,12 @@ describe('UserController Tests', () => {
       .send(user)
       .expect(201);
 
-    expect(response.body.data.data).toHaveProperty('_id');
-    expect(response.body.data.data.name).toBe(user.name);
-    expect(response.body.data.data.email).toBe(user.email);
-    expect(response.body.data.data.profession).toBe(user.profession);
+    expect(response.body.data.user).toHaveProperty('_id');
+    expect(response.body.data.user.name).toBe(user.name);
+    expect(response.body.data.user.email).toBe(user.email);
+    expect(response.body.data.user.profession).toBe(user.profession);
 
-    userId = response.body.data.data._id;
+    userId = response.body.data.user._id;
   });
 
   it('should get a user by id', async () => {
@@ -61,8 +61,8 @@ describe('UserController Tests', () => {
       .send({ name: 'John Doe Updated' })
       .expect(201);
 
-    expect(response.body.data.data).toHaveProperty('_id', userId);
-    expect(response.body.data.data.name).toBe('John Doe Updated');
+    expect(response.body.data.user).toHaveProperty('_id', userId);
+    expect(response.body.data.user.name).toBe('John Doe Updated');
   });
 
   it('should delete a user', async () => {
