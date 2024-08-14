@@ -48,8 +48,6 @@ class UserController {
 
     async store(req: Request, res: Response) {
         try {
-            const user = await UserModel.create(req.body);
-
             const { name, email, profession } = req.body;
 
             const rc = requestCheck();
@@ -79,6 +77,8 @@ class UserController {
                 console.log(errors)
                 return res.send_badRequest('Bad Request', errors);
             }
+
+            const user = await UserModel.create(req.body);
 
             return res.send_created('Created', {
                 user
