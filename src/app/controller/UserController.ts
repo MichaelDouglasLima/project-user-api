@@ -5,6 +5,8 @@ import mongoose from 'mongoose';
 import express from 'express';
 import responser from 'responser'
 
+import requestCheck from 'request-check';
+
 const app = express()
 const routes = express.Router();
 
@@ -15,13 +17,27 @@ class UserController {
     async getById(req: Request, res: Response) {
         try {
             const { id } = req.params;
-            if (!mongoose.Types.ObjectId.isValid(id)) {
-                return res.send_badRequest('Bad Request')
+
+            const rc = requestCheck();
+            rc.addRule('id', {
+                validator: (id: string) => mongoose.Types.ObjectId.isValid(id),
+                message: 'ID Invalid!'
+            })
+
+            const errors = rc.check (
+                { id }
+            )
+
+            if (errors) {
+                console.log(errors)
+                return res.send_badRequest('Bad Request', errors);
             }
+
             const user = await UserModel.findById(id).exec();
             if (!user) {
                 return res.send_notFound('User Not Found');
             }
+
             return res.send_ok('User were found successfully', {
                 user
             });
@@ -32,9 +48,40 @@ class UserController {
 
     async store(req: Request, res: Response) {
         try {
-            const data = await UserModel.create(req.body);
+            const user = await UserModel.create(req.body);
+
+            const { name, email, profession } = req.body;
+
+            const rc = requestCheck();
+
+            rc.addRule('name', {
+                validator: (name: string) => name.length >= 3,
+                message: 'Name must be 3 characters or more!'
+            });
+
+            rc.addRule('email', {
+                validator: (name: string) => name.includes('@'),
+                message: 'Email Invalid!'
+            });
+
+            rc.addRule('profession', {
+                validator: (profession: string) => profession.length >= 3,
+                message: 'Profession must be 3 characters or more!'
+            });
+
+            const errors = rc.check (
+                { name },
+                { email },
+                { profession }
+            )
+
+            if (errors) {
+                console.log(errors)
+                return res.send_badRequest('Bad Request', errors);
+            }
+
             return res.send_created('Created', {
-                data
+                user
             })
         } catch (error) {
             return res.send_internalServerError('Internal Server Error');
@@ -43,9 +90,9 @@ class UserController {
    
     async index(req: Request, res: Response) {
         try {
-            const data = await UserModel.find({}).exec();
+            const users = await UserModel.find({}).exec();
             return res.send_ok('Users were found successfully', {
-                data
+                users
             });
         } catch (error) {
             return res.send_internalServerError('Internal Server Error');
@@ -55,8 +102,20 @@ class UserController {
     async partialUpdate(req: Request, res: Response) {
         try {
             const { id } = req.params;
-            if (!mongoose.Types.ObjectId.isValid(id)) {
-                return res.send_badRequest('Bad Request')
+
+            const rc = requestCheck();
+            rc.addRule('id', {
+                validator: (id: string) => mongoose.Types.ObjectId.isValid(id),
+                message: 'ID Invalid!'
+            })
+
+            const errors = rc.check (
+                { id }
+            )
+
+            if (errors) {
+                console.log(errors)
+                return res.send_badRequest('Bad Request', errors);
             }
 
             const updatedData: Record<string, any> = {};
@@ -81,14 +140,27 @@ class UserController {
     async update(req: Request, res: Response) {
         try {
             const { id } = req.params;
-            if (!mongoose.Types.ObjectId.isValid(id)) {
-                return res.send_badRequest('Bad Request');
+
+            const rc = requestCheck();
+            rc.addRule('id', {
+                validator: (id: string) => mongoose.Types.ObjectId.isValid(id),
+                message: 'ID Invalid!'
+            })
+
+            const errors = rc.check (
+                { id }
+            )
+
+            if (errors) {
+                console.log(errors)
+                return res.send_badRequest('Bad Request', errors);
             }
 
             const data = await UserModel.findByIdAndUpdate(id, req.body, { new: true }).exec();
             if (!data) {
                 return res.send_notFound('User Not Found');
             }
+
             return res.send_created('Created', {
                 data
             })
@@ -100,14 +172,27 @@ class UserController {
     async delete(req: Request, res: Response) {
         try {
             const { id } = req.params;
-            if (!mongoose.Types.ObjectId.isValid(id)) {
-                return res.send_badRequest('Bad Request');
+
+            const rc = requestCheck();
+            rc.addRule('id', {
+                validator: (id: string) => mongoose.Types.ObjectId.isValid(id),
+                message: 'ID Invalid!'
+            })
+
+            const errors = rc.check (
+                { id }
+            )
+
+            if (errors) {
+                console.log(errors)
+                return res.send_badRequest('Bad Request', errors);
             }
 
             const result = await UserModel.findByIdAndDelete(id).exec();
             if (!result) {
                 return res.send_notFound('User Not Found');
             }
+
             return res.send_noContent('No Content');
         } catch (error) {
             return res.send_internalServerError('Internal Server Error');
