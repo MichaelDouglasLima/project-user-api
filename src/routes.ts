@@ -3,11 +3,11 @@ import UserController from './app/controller/UserController';
 
 const routes = express.Router();
 
-routes.get("/users/:id", (req: Request, res: Response) => UserController.getById(req, res));
-routes.get("/users", (req: Request, res: Response) => UserController.index(req, res));
-routes.post("/users", (req: Request, res: Response) => UserController.store(req, res));
-routes.patch("/users/:id", (req: Request, res: Response) => UserController.partialUpdate(req, res));
-routes.put("/users/:id", (req: Request, res: Response) => UserController.update(req, res));
-routes.delete("/users/:id", (req: Request, res: Response) => UserController.delete(req, res));
+routes.get("/users/:id",  UserController.getById);
+routes.get("/users",  UserController.index);
+routes.post("/users",  UserController.store);
+routes.patch("/users/:id",  UserController.partialUpdate);
+routes.put("/users/:id",  UserController.update);
+routes.delete("/users/:id",  UserController.delete);
 
 export default routes;
