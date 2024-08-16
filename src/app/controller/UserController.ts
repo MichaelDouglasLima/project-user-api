@@ -73,7 +73,7 @@ class UserController {
 
             if (errors) {
                 console.log(errors)
-                return res.send_badRequest('Requisição Ruim', errors);
+                return res.send_unprocessableEntity('Entidade do Usuário Improcessável', errors);
             }
 
             const user = await UserModel.create(req.body);
@@ -152,7 +152,7 @@ class UserController {
     
             if (Object.keys(validationErrors).length > 0) {
                 console.log(validationErrors);
-                return res.send_badRequest('Requisição Ruim', validationErrors);
+                return res.send_unprocessableEntity('Entidade do Usuário Improcessável', validationErrors);
             }
     
             const user = await UserModel.findByIdAndUpdate(id, updateFields, { new: true }).exec();
@@ -210,7 +210,7 @@ class UserController {
 
             if (updateErrors) {
                 console.log(updateErrors);
-                return res.send_badRequest('Requisição Ruim', updateErrors);
+                return res.send_unprocessableEntity('Entidade do Usuário Improcessável', updateErrors);
             }
 
             const result = await UserModel.replaceOne({ _id: id }, { name, email, profession });
