@@ -3,18 +3,18 @@
 ## Link da Documentação do Projeto:
 [Postam - API de Usuários](https://documenter.getpostman.com/view/37451839/2sA3s6GVds)
 
-## Para clonar o projeto execute o comando:
+### Para clonar o projeto execute o comando:
 
 - git clone git@github.com:MichaelDouglasLima/project-user-api.git
 
-## Para instalar as depêndencias do projeto execute o comando dentro da raíz do projeto:
+### Para instalar as depêndencias do projeto execute o comando dentro da raíz do projeto:
 
 - npm install
 
-## Para rodar a aplicação execute o comando dentro da raíz do projeto:
+## #Para rodar a aplicação execute o comando dentro da raíz do projeto:
 
 - npm run dev
-- 
-## Para rodar os testes execute o comando?
+
+### Para rodar os testes execute o comando:
 
 - npm test
