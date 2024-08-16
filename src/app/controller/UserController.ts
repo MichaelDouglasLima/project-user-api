@@ -101,22 +101,22 @@ class UserController {
         try {
             const { id } = req.params;
             const updateFields = req.body;
-    
+
             const rc = requestCheck();
             rc.addRule('id', {
                 validator: (id: string) => mongoose.Types.ObjectId.isValid(id),
                 message: 'ID Inválido!'
             });
-    
+
             const errors = rc.check({ id });
             if (errors) {
                 console.log(errors);
                 return res.send_badRequest('Requisição Ruim', errors);
             }
-   
+
             const updateCheck = requestCheck();
             const validationErrors: Record<string, any> = {};
-    
+
             if (updateFields.name !== undefined) {
                 updateCheck.addRule('name', {
                     validator: (name: any) => typeof name === 'string' && name.length >= 3,
@@ -127,7 +127,7 @@ class UserController {
                     validationErrors.name = nameErrors;
                 }
             }
-    
+
             if (updateFields.email !== undefined) {
                 updateCheck.addRule('email', {
                     validator: (email: any) => typeof email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
@@ -138,7 +138,7 @@ class UserController {
                     validationErrors.email = emailErrors;
                 }
             }
-    
+
             if (updateFields.profession !== undefined) {
                 updateCheck.addRule('profession', {
                     validator: (profession: any) => typeof profession === 'string' && profession.length >= 3,
@@ -149,17 +149,17 @@ class UserController {
                     validationErrors.profession = professionErrors;
                 }
             }
-    
+
             if (Object.keys(validationErrors).length > 0) {
                 console.log(validationErrors);
                 return res.send_unprocessableEntity('Entidade do Usuário Improcessável', validationErrors);
             }
-    
+
             const user = await UserModel.findByIdAndUpdate(id, updateFields, { new: true }).exec();
             if (!user) {
                 return res.send_notFound('Usuário não encontrado');
             }
-    
+
             return res.send_ok('Usuário atualizado com sucesso', { user });
         } catch (error) {
             console.error(error);
@@ -167,7 +167,7 @@ class UserController {
         }
     }
 
-    
+
     async update(req: Request, res: Response) {
         try {
             const { id } = req.params;
