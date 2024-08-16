@@ -21,6 +21,7 @@ afterAll(async () => {
 
 describe('UserController Tests', () => {
   let userId: string | undefined;
+  let userJaneId: string | undefined;
 
   it('should create a user', async () => {
     const user = { name: 'John Doe', email: 'john@example.com', profession: 'Programmer' };
@@ -54,10 +55,12 @@ describe('UserController Tests', () => {
   it('should list all users', async () => {
     const user2 = { name: 'Jane Doe', email: 'jane@example.com', profession: 'Designer' };
 
-    await request(server)
+    const responseJane = await request(server)
       .post('/users')
       .send(user2)
       .expect(201);
+
+    userJaneId = responseJane.body.data.user._id;
 
     const response = await request(server)
       .get('/users')
@@ -69,7 +72,7 @@ describe('UserController Tests', () => {
     const userNames = response.body.data.users.map((user: any) => user.name);
     expect(userNames).toContain('John Doe');
     expect(userNames).toContain('Jane Doe');
-  });
+  })
 
   it('should update a user', async () => {
     if (!userId) {
@@ -79,23 +82,33 @@ describe('UserController Tests', () => {
     const response = await request(server)
       .patch(`/users/${userId}`)
       .send({ name: 'John Doe Updated' })
-      .expect(201);
+      .expect(200);
 
     expect(response.body.data.user).toHaveProperty('_id', userId);
     expect(response.body.data.user.name).toBe('John Doe Updated');
   });
 
   it('should delete a user', async () => {
-    if (!userId) {
+    if (!userId || !userJaneId) {
       throw new Error('User ID not set');
     }
 
     await request(server)
       .delete(`/users/${userId}`)
-      .expect(204);
+      .expect(200);
 
     await request(server)
       .get(`/users/${userId}`)
       .expect(404);
+
+    if (userJaneId) {
+      await request(server)
+        .delete(`/users/${userJaneId}`)
+        .expect(200);
+
+      await request(server)
+        .get(`/users/${userJaneId}`)
+        .expect(404);
+    }
   });
 });

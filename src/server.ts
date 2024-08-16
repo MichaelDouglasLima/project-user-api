@@ -2,7 +2,7 @@ import express, { Express, Request, Response, NextFunction } from "express";
 import { connect } from "./database/config";
 import mongoose from "mongoose";
 import routes from "./routes";
-import responser from 'responser'
+import responser from 'responser';
 
 class App {
   public express: Express;
@@ -22,7 +22,7 @@ class App {
 
   private middlewares(): void {
     this.express.use(express.json());
-    this.express.use(responser)
+    this.express.use(responser);
   }
 
   private routes(): void {
