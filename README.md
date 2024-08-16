@@ -11,10 +11,10 @@
 
 - npm install
 
-## #Para rodar a aplicação execute o comando dentro da raíz do projeto:
+### Para rodar a aplicação execute o comando dentro da raíz do projeto:
 
 - npm run dev
 
-### Para rodar os testes execute o comando:
+### Para rodar os testes execute o comando dentro da raíz do projeto:
 
 - npm test
